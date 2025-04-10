@@ -1,10 +1,9 @@
-FROM runpod/pytorch:3.10-2.0.1
+FROM runpod/vllm:py310cu121
 
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
-RUN pip install --upgrade pip && pip install -r requirements.txt
+COPY . /app
 
-COPY . .
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "handler.py"]
+CMD ["python3", "handler.py"]
