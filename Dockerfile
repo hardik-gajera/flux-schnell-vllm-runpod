@@ -1,9 +1,9 @@
-FROM runpod/vllm:py310cu121
+FROM runpod/worker-v1-vllm:v2.3.0stable-cuda12.1.0
 
 WORKDIR /app
 
-COPY . /app
+# Copy your handler and any additional files
+COPY handler.py /app/handler.py
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-CMD ["python3", "handler.py"]
+# Set the command to run your handler
+CMD ["python3", "/app/handler.py"]
